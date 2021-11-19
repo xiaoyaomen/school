@@ -117,7 +117,7 @@
     <div id="bodyDiv">
         <p onclick="changeUI()" id="myColorUI" style="text-align:center;background:green;"><br><img src="./img/pass1.png" width="330px" height="225px" alt=""><br>
             <font style="font-size:100px">
-               <script>
+             <script>
                     var days=["天","一","二","三","四","五","六"];
                     window.onload=function(){
                         setInterval("getDT()",1000);//定时器，每秒执行一次
@@ -146,7 +146,7 @@
                          s="0"+s;
                      }
                      var day=now.getDay();
-                     var str=h + ((m < 10) ? ":0" : ":") + m + ((s< 10) ? ":0" : ":") + s;
+                     var str=h + ((m < 10) ? ":0" : ":") + m + ((s< 10) ? "" : ":") + s;
                      
                     document.getElementById("nowDT").innerHTML=str;
                     }

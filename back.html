@@ -117,14 +117,40 @@
     <div id="bodyDiv">
         <p onclick="changeUI()" id="myColorUI" style="text-align:center;background:green;"><br><img src="./img/pass1.png" width="330px" height="225px" alt=""><br>
             <font style="font-size:100px">
-                <script type="text/javascript">
-                    var t = new Date();
-                    var hour = t.getHours();
-                    var minute = t.getMinutes();
-                    var second = t.getSeconds();
-                    var nowTime = hour + ((minute < 10) ? ":0" : ":") + minute + ((second < 10) ? ":0" : ":") + second;
-                    document.write(nowTime);
+                <script>
+                    var days=["天","一","二","三","四","五","六"];
+                    window.onload=function(){
+                        setInterval("getDT()",1000);//定时器，每秒执行一次
+                    }
+                    function getDT(){
+                    var now=new Date();//获取当前时间
+                    var y=now.getFullYear();//获取年份
+                     var M=now.getMonth()+1;//获取月份
+                    if(M<10){
+                       M="0"+M;
+                     }
+                     var d=now.getDate();//获取日期
+                     if(d<10){
+                         d="0"+d;
+                     }
+                     var h=now.getHours();//获取小时
+                     if(h<10){
+                         h="0"+h;
+                     }
+                     var m=now.getMinutes();//获取分钟
+                     if(m<10){
+                        m="0"+m;
+                     }
+                     var s=now.getSeconds();//获取秒数
+                     if(s<10){
+                         s="0"+s;
+                     }
+                     var day=now.getDay();
+                     var str=h+"："+m+"："+s
+                    document.getElementById("nowDT").innerHTML=str;
+                    }
                 </script>
+                <span id="nowDT">>
             </font>
         </p>
         <div class="weui-cells__title">学生返校通行证</div>

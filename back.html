@@ -89,7 +89,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
     <title>返校通行证(2分钟内有效)</title>
     <link rel="stylesheet" href="./css/weui.min.css">
-    <script type="text/javascript" src="./返校通行证(2分钟内有效)_files/weui.min.js.下载" charset="UTF-8"></script>
+    <script type="text/javascript" src="./js/weui.min.js" charset="UTF-8"></script>
     <style>
         hcfy-result.__hcfy__result__loaded__.__hcfy__result__both__ {
             border: 1px dotted
@@ -117,41 +117,35 @@
     <div id="bodyDiv">
         <p onclick="changeUI()" id="myColorUI" style="text-align:center;background:green;"><br><img src="./img/pass1.png" width="330px" height="225px" alt=""><br>
             <font style="font-size:100px">
-                <script>
-                    var days=["天","一","二","三","四","五","六"];
-                    window.onload=function(){
-                        setInterval("getDT()",1000);//定时器，每秒执行一次
-                    }
-                    function getDT(){
-                    var now=new Date();//获取当前时间
-                    var y=now.getFullYear();//获取年份
-                     var M=now.getMonth()+1;//获取月份
-                    if(M<10){
-                       M="0"+M;
-                     }
-                     var d=now.getDate();//获取日期
-                     if(d<10){
-                         d="0"+d;
-                     }
-                     var h=now.getHours();//获取小时
-                     if(h<10){
-                         h="0"+h;
-                     }
-                     var m=now.getMinutes();//获取分钟
-                     if(m<10){
-                        m="0"+m;
-                     }
-                     var s=now.getSeconds();//获取秒数
-                     if(s<10){
-                         s="0"+s;
-                     }
-                     var day=now.getDay();
-                     var str=h + ((m < 10) ? ":" : ":") + m + ((s< 10) ? ":" : ":") + s;
-                     
-                    document.getElementById("nowDT").innerHTML=str;
-                    }
-                </script>
-                <span id="nowDT">>
+                <span id='theDate'></span>
+               
+<script>
+	function dateFormat(fmt, date) {
+    let ret;
+    const opt = {
+        "Y+": date.getFullYear().toString(),        // 年
+        "m+": (date.getMonth() + 1).toString(),     // 月
+        "d+": date.getDate().toString(),            // 日
+        "H+": date.getHours().toString(),           // 时
+        "M+": date.getMinutes().toString(),         // 分
+        "S+": date.getSeconds().toString()          // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+    };
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+        };
+    };
+    return fmt;
+	}
+	var d = new Date();
+		document.getElementById("theDate").innerText=dateFormat("HH:MM:SS", d);
+	window.setInterval(function(){
+		var d = new Date();
+		document.getElementById("theDate").innerText=dateFormat("HH:MM:SS", d);
+	},1000)
+</script>
             </font>
         </p>
         <div class="weui-cells__title">学生返校通行证</div>
